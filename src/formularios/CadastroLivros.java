@@ -40,6 +40,7 @@ public class CadastroLivros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         campoTitulo = new javax.swing.JTextField();
@@ -53,11 +54,12 @@ public class CadastroLivros extends javax.swing.JFrame {
         limpaCadastroLivro = new javax.swing.JButton();
         cancelaCadastroLivro = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        campoISBN = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         campoQuantidade = new javax.swing.JTextField();
+        campoISBN = new javax.swing.JTextField();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -108,8 +110,6 @@ public class CadastroLivros extends javax.swing.JFrame {
 
         jLabel8.setText("ISBN:");
 
-        jScrollPane1.setViewportView(campoISBN);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,7 +150,7 @@ public class CadastroLivros extends javax.swing.JFrame {
                                             .addComponent(jLabel4)
                                             .addComponent(campoEditora, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                                             .addComponent(jLabel8)
-                                            .addComponent(jScrollPane1))
+                                            .addComponent(campoISBN))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
@@ -198,9 +198,10 @@ public class CadastroLivros extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoQuantidade)
+                            .addComponent(campoISBN))
+                        .addGap(2, 2, 2))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,7 +250,7 @@ public class CadastroLivros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoAutor;
     private javax.swing.JTextField campoEditora;
-    private javax.swing.JTextPane campoISBN;
+    private javax.swing.JTextField campoISBN;
     private javax.swing.JTextField campoPaginas;
     private javax.swing.JTextField campoQuantidade;
     private javax.swing.JTextField campoTitulo;
@@ -263,7 +264,7 @@ public class CadastroLivros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton limpaCadastroLivro;
     // End of variables declaration//GEN-END:variables
 
