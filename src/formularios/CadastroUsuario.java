@@ -68,7 +68,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         campoCPF = new javax.swing.JTextField();
         campoBairro = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -357,6 +357,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
         campoBairro.setText("");
         campoTelefone.setText("");
         campoEmail.setText("");
+
+        usuario = new Usuario();
 
     }
 }

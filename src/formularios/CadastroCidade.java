@@ -50,7 +50,7 @@ public class CadastroCidade extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         campoEstado = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel1.setText("Cadastro de Cidade");
@@ -182,6 +182,7 @@ public class CadastroCidade extends javax.swing.JFrame {
         campoNome.setText("");
         // Selecionar o primeiro estado da lista
         campoEstado.setSelectedIndex(0);
+        cidade = new Cidade();
     }
 
 }

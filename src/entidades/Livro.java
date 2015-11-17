@@ -5,7 +5,6 @@
  */
 package entidades;
 
-import com.sun.istack.internal.Nullable;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -127,10 +126,6 @@ public class Livro implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public void salvar(Livro livro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

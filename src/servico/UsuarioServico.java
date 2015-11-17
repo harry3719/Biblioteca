@@ -8,6 +8,7 @@ package servico;
 import dao.UsuarioDAO;
 import entidades.Usuario;
 import factory.CriadorDeSessao;
+import java.util.List;
 
 /**
  *
@@ -24,5 +25,9 @@ public class UsuarioServico {
     public void salvar(Usuario usuario) {
 
         dao.saveOrUpdate(usuario);
+    }
+
+    public List<Usuario> buscar(String nome, String cpf) {
+        return dao.buscar(nome, cpf);
     }
 }

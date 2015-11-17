@@ -27,6 +27,7 @@ public class CadastroLivros extends javax.swing.JFrame {
 
     public CadastroLivros() {
         initComponents();
+        servico = new LivroServico();
 
     }
 
@@ -58,7 +59,7 @@ public class CadastroLivros extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         campoQuantidade = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -133,7 +134,7 @@ public class CadastroLivros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 70, Short.MAX_VALUE))
+                        .addGap(0, 104, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -222,7 +223,7 @@ public class CadastroLivros extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTituloActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        salvar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cancelaCadastroLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaCadastroLivroActionPerformed
@@ -236,7 +237,7 @@ public class CadastroLivros extends javax.swing.JFrame {
     private void salvar() {
         try {
             setRegistro();
-            livro.salvar(livro);
+            servico.salvar(livro);
             limpar();
 
             JOptionPane.showMessageDialog(this, "Registro Salvo com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -287,5 +288,6 @@ public class CadastroLivros extends javax.swing.JFrame {
         campoPaginas.setText("");
         campoISBN.setText("");
         campoQuantidade.setText("");
+        livro = new Livro();
     }
 }

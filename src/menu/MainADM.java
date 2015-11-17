@@ -53,6 +53,7 @@ public class MainADM extends javax.swing.JFrame {
         cadastrofuncionario = new javax.swing.JMenuItem();
         cadastroUsuario = new javax.swing.JMenuItem();
         cadastroLivro = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         pesquisarLivro = new javax.swing.JMenuItem();
@@ -136,6 +137,14 @@ public class MainADM extends javax.swing.JFrame {
         });
         jMenu9.add(cadastroLivro);
 
+        jMenuItem3.setText("Cadastro de Estado");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem3);
+
         jMenuItem4.setText("Cadastro de Municipio");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +223,9 @@ public class MainADM extends javax.swing.JFrame {
     }//GEN-LAST:event_trocarUsuarioActionPerformed
 
     private void pesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarUsuarioActionPerformed
-        pesquisarUsuario.setVisible(true);
+        PesquisaUsuario p = new PesquisaUsuario();
+        p.setVisible(true);
+
     }//GEN-LAST:event_pesquisarUsuarioActionPerformed
 
     private void cadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroUsuarioActionPerformed
@@ -243,6 +254,11 @@ public class MainADM extends javax.swing.JFrame {
         PesquisaLivro pesquisarLivro = new PesquisaLivro();
         pesquisarLivro.setVisible(true);
     }//GEN-LAST:event_pesquisarLivroActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CadastroEstado c = new CadastroEstado();
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -298,6 +314,7 @@ public class MainADM extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem pesquisarLivro;

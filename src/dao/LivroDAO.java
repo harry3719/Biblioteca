@@ -23,7 +23,7 @@ public class LivroDAO extends DAO<Livro> {
 
     public List<Livro> buscar(String autor, String isbn) {
         return getSession().createCriteria(Livro.class).add(Restrictions.ilike("autor", autor, MatchMode.START))
-                .add(Restrictions.ilike("isbn", isbn)).list();
+                .add(Restrictions.ilike("isbn", isbn, MatchMode.START)).list();
 
     }
 
