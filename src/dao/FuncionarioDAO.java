@@ -18,4 +18,11 @@ public class FuncionarioDAO extends DAO<Funcionario> {
         super(session, Funcionario.class);
     }
 
+    public Funcionario login(String login, String senha) {
+        return (Funcionario) getSession().createQuery("SELECT a FROM Funcionario a WHERE a.nome =:nome AND a.senha =:senha ")
+                .setParameter("nome", login)
+                .setParameter("senha", senha)
+                .uniqueResult();
+    }
+
 }

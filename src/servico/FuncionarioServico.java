@@ -14,17 +14,21 @@ import factory.CriadorDeSessao;
  * @author Paulo
  */
 public class FuncionarioServico {
+
     private FuncionarioDAO dao;
 
     public FuncionarioServico() {
         dao = new FuncionarioDAO(CriadorDeSessao.getSession());
     }
-    
-    public void salvar(Funcionario funcionario){
-        // Aqui  onde se deve fazer coisa relativas a regra de negocio como 
+
+    public void salvar(Funcionario funcionario) {
+        // Aqui  onde se deve fazer coisa relativas a regra de negocio como
         // validar CPF ou outras checagens
         dao.saveOrUpdate(funcionario);
     }
-    
-    
+
+    public Funcionario login(String login, String senha) {
+        return dao.login(login, senha);
+    }
+
 }

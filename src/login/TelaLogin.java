@@ -5,10 +5,12 @@
  */
 package login;
 
+import entidades.Funcionario;
 import factory.CriadorDeSessao;
 import javax.swing.JOptionPane;
 import menu.MainADM;
 import menu.MainUser;
+import servico.FuncionarioServico;
 
 /**
  *
@@ -19,8 +21,11 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
+    private FuncionarioServico servico;
+
     public TelaLogin() {
         initComponents();
+        servico = new FuncionarioServico();
     }
 
     /**
@@ -88,7 +93,6 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(login)
                     .addComponent(senha)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +102,8 @@ public class TelaLogin extends javax.swing.JFrame {
                                 .addComponent(acessar)
                                 .addGap(18, 18, 18)
                                 .addComponent(cancelar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(login))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -141,25 +146,28 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_senhaActionPerformed
 
     private void acessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarActionPerformed
-        if (login.getText().equals("root") && senha.getText().equals("123")) {
-            //if(date)
-            JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador !!");
-            new MainADM().setVisible(true);
-            this.dispose();
-
-        } else if (login.getText().equals("user") && senha.getText().equals("123")) {
-            //if(date)
-            JOptionPane.showMessageDialog(null, "Seja bem !!");
-            new MainUser().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Acesso Negado!!!");
-        }
+        login();
     }//GEN-LAST:event_acessarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void login() {
+        Funcionario funcionario = servico.login(login.getText(), new String(senha.getPassword()));
+        if (funcionario != null) {
+            if (funcionario.getFuncao().equals("ADMINISTRADOR")) {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador !!");
+                new MainADM().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seja bem !!");
+                new MainUser().setVisible(true);
+            }
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Acesso Negado!!!");
+        }
+    }
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,6 @@
  */
 package menu;
 
-import factory.CriadorDeSessao;
 import formularios.CadastroCidade;
 import formularios.CadastroEstado;
 import formularios.CadastroFuncionario;
@@ -13,7 +12,6 @@ import formularios.CadastroUsuario;
 import formularios.CadastroLivros;
 import formularios.PesquisaLivro;
 import formularios.PesquisaUsuario;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import login.TelaLogin;
 

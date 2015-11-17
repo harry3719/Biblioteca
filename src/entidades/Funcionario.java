@@ -21,54 +21,64 @@ import javax.persistence.TemporalType;
  * @author Paulo
  */
 @Entity
-public class Funcionario implements Serializable{
-    
+public class Funcionario implements Serializable {
+
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable = false)
     private String nome;
-    
+
     @Column
     private String endereco;
-    
+
     @Column
     // Alguns numeros incluem letras as vezes tipo 26A
     private String numero;
-    
+
     @Column
     // Alguns campos so opcionais
     private String complemento;
-    
+
     @Column(nullable = false)
     private String rg;
-    
+
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dtEmissao;
 
-    
     @Column(nullable = false)
     private String orgaoExpeditor;
-    
+
     @Column(nullable = false, unique = true)
     // Cpf tem 0 a esquerda
     private String cpf;
-    
+
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = true)
     private String telefoneFixo;
-    
+
     @Column
     private String telefoneCelular;
-    
+
     @Column(nullable = false)
-    // Aqui no precisa ser unique 
+    // Aqui no precisa ser unique
     private String funcao;
+
+    @Column()
+    private String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public Long getId() {
         return id;
@@ -94,8 +104,6 @@ public class Funcionario implements Serializable{
         this.endereco = endereco;
     }
 
-   
-
     public String getComplemento() {
         return complemento;
     }
@@ -103,7 +111,6 @@ public class Funcionario implements Serializable{
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-
 
     public Date getDtEmissao() {
         return dtEmissao;
@@ -120,8 +127,6 @@ public class Funcionario implements Serializable{
     public void setOrgaoExpeditor(String orgaoExpeditor) {
         this.orgaoExpeditor = orgaoExpeditor;
     }
-
-    
 
     public String getEmail() {
         return email;
@@ -147,10 +152,6 @@ public class Funcionario implements Serializable{
         this.telefoneFixo = telefoneFixo;
     }
 
-  
-
-  
-    
     public String getFuncao() {
         return funcao;
     }
@@ -182,9 +183,7 @@ public class Funcionario implements Serializable{
     public void setTelefoneCelular(String telefoneCelular) {
         this.telefoneCelular = telefoneCelular;
     }
-    
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -206,6 +205,5 @@ public class Funcionario implements Serializable{
         }
         return true;
     }
-    
-    
+
 }
