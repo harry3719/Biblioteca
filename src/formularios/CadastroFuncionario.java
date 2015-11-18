@@ -82,6 +82,8 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         campoCPF = new javax.swing.JFormattedTextField();
         campoCEP = new javax.swing.JFormattedTextField();
         campotelefone01 = new javax.swing.JFormattedTextField();
+        jLabel10 = new javax.swing.JLabel();
+        campoSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -146,9 +148,17 @@ public class CadastroFuncionario extends javax.swing.JDialog {
 
         jLabel15.setText("CPF:");
 
-        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "USUARIO", "FUNCIONARIO", "ADMINISTRADOR" }));
+        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Selecione --", "FUNCIONARIO", "ADMINISTRADOR" }));
 
         jLabel11.setText("Função:");
+
+        jLabel10.setText("Senha:");
+
+        campoSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSenhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,19 +213,15 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                                     .addComponent(campoBairro)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
+                                .addGap(177, 177, 177)
+                                .addComponent(jLabel10)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campotelefone01, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(107, 107, 107)
-                                        .addComponent(gravarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(0, 0, Short.MAX_VALUE))
@@ -224,7 +230,15 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(campoComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(campoComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gravarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -280,13 +294,15 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(campotelefone01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gravarFuncionario)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85))
         );
 
@@ -314,6 +330,10 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCidadeActionPerformed
 
+    private void campoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSenhaActionPerformed
+
     private void salvar() {
         try {
             setRegistro();
@@ -339,10 +359,12 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoNumero;
     private javax.swing.JTextField campoRg;
+    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JFormattedTextField campotelefone01;
     private javax.swing.JButton gravarFuncionario;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -374,11 +396,12 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         funcionario.setLogradouro(campoEndereco.getText());
         funcionario.setNumero(campoNumero.getText());
         funcionario.setComplemento(campoComplemento.getText());
-        funcionario.setCpf(campoCEP.getText());
+        funcionario.setCep(campoCEP.getText());
         funcionario.setBairro(campoBairro.getText());
         funcionario.setFuncao(campoFuncao.getSelectedItem().toString());
         funcionario.setTelefoneFixo(campotelefone01.getText());
         funcionario.setEmail(campoEmail.getText());
+        funcionario.setSenha(campoSenha.getText());
 
     }
 
@@ -399,6 +422,8 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         campotelefone01.setText("");
         campoFuncao.setSelectedItem(0);
         campoEmail.setText("");
+        campoSenha.setText("");
         funcionario = new Funcionario();
+
     }
 }

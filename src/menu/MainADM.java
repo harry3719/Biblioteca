@@ -38,6 +38,12 @@ public class MainADM extends javax.swing.JFrame {
         initComponents();
         if (funcionario.getFuncao().equals("ADMINISTRADOR")) {
             cadastroFuncionario.setEnabled(true);
+
+        } else if (funcionario.getFuncao().equals("FUNCIONARIO")) {
+            cadastroFuncionario.setEnabled(false);
+            cadastroEstado.setEnabled(false);
+            cadastroMunicipio.setEnabled(false);
+
         }
     }
 
@@ -61,9 +67,9 @@ public class MainADM extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         trocarUsuario = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        cadEstado = new javax.swing.JMenu();
+        cadastroEstado = new javax.swing.JMenuItem();
+        cadastroMunicipio = new javax.swing.JMenuItem();
         cadastroFuncionario = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -132,23 +138,23 @@ public class MainADM extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu9.setText("Cadastro");
+        cadEstado.setText("Cadastro");
 
-        jMenuItem3.setText("Cadastro de Estado");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        cadastroEstado.setText("Cadastro de Estado");
+        cadastroEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                cadastroEstadoActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem3);
+        cadEstado.add(cadastroEstado);
 
-        jMenuItem4.setText("Cadastro de Municipio");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        cadastroMunicipio.setText("Cadastro de Municipio");
+        cadastroMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                cadastroMunicipioActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem4);
+        cadEstado.add(cadastroMunicipio);
 
         cadastroFuncionario.setText("Cadastro de Funcionario");
         cadastroFuncionario.setEnabled(false);
@@ -157,7 +163,7 @@ public class MainADM extends javax.swing.JFrame {
                 cadastroFuncionarioActionPerformed(evt);
             }
         });
-        jMenu9.add(cadastroFuncionario);
+        cadEstado.add(cadastroFuncionario);
 
         jMenuItem5.setText("Cadastro de Autor");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +171,7 @@ public class MainADM extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem5);
+        cadEstado.add(jMenuItem5);
 
         jMenuItem6.setText("Cadastro de Editora");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +179,7 @@ public class MainADM extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem6);
+        cadEstado.add(jMenuItem6);
 
         cadastroLivro.setText("Cadastro Livros");
         cadastroLivro.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +187,7 @@ public class MainADM extends javax.swing.JFrame {
                 cadastroLivroActionPerformed(evt);
             }
         });
-        jMenu9.add(cadastroLivro);
+        cadEstado.add(cadastroLivro);
 
         cadastroUsuario.setText("Cadastro Leitor");
         cadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +195,7 @@ public class MainADM extends javax.swing.JFrame {
                 cadastroUsuarioActionPerformed(evt);
             }
         });
-        jMenu9.add(cadastroUsuario);
+        cadEstado.add(cadastroUsuario);
 
         jMenuItem12.setText("Cadastra Emprestimo");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -197,9 +203,9 @@ public class MainADM extends javax.swing.JFrame {
                 jMenuItem12ActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem12);
+        cadEstado.add(jMenuItem12);
 
-        jMenuBar1.add(jMenu9);
+        jMenuBar1.add(cadEstado);
 
         jMenu2.setText("Pesquisa");
 
@@ -325,9 +331,9 @@ public class MainADM extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cadastroUsuarioActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void cadastroMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroMunicipioActionPerformed
         new CadastroCidade(this).setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_cadastroMunicipioActionPerformed
 
     private void cadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFuncionarioActionPerformed
         new CadastroFuncionario(this).setVisible(true);
@@ -342,9 +348,10 @@ public class MainADM extends javax.swing.JFrame {
         new PesquisaLivro(this).setVisible(true);
     }//GEN-LAST:event_pesquisarLivroActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void cadastroEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroEstadoActionPerformed
         new CadastroEstado(this).setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    }//GEN-LAST:event_cadastroEstadoActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         new PesquisaEstado(this).setVisible(true);
@@ -383,8 +390,11 @@ public class MainADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu cadEstado;
+    private javax.swing.JMenuItem cadastroEstado;
     private javax.swing.JMenuItem cadastroFuncionario;
     private javax.swing.JMenuItem cadastroLivro;
+    private javax.swing.JMenuItem cadastroMunicipio;
     private javax.swing.JMenuItem cadastroUsuario;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
@@ -396,7 +406,6 @@ public class MainADM extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
@@ -406,8 +415,6 @@ public class MainADM extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

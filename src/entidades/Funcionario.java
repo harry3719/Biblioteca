@@ -61,6 +61,17 @@ public class Funcionario implements Serializable {
     @Column
     private String senha;
 
+    @Column
+    private String cep;
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
     public String getSenha() {
         return senha;
     }

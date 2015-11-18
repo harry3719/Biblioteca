@@ -155,7 +155,12 @@ public class TelaLogin extends javax.swing.JFrame {
     private void login() {
         Funcionario funcionario = servico.login(login.getText(), new String(senha.getPassword()));
         if (funcionario != null) {
-            JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador !!");
+            if (funcionario.getFuncao().equals("ADMINISTRADOR")) {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador !!");
+            } else if (funcionario.getFuncao().equals("FUNCIONARIO")) {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo !!");
+            }
+
             new MainADM(funcionario).setVisible(true);
             this.dispose();
         } else {

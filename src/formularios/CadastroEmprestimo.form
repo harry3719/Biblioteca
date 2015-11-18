@@ -182,6 +182,9 @@
     <Component class="javax.swing.JFormattedTextField" name="campoDataEmprestimo">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="campoDataDevolucao">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoDataDevolucaoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

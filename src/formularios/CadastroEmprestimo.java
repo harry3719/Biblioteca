@@ -103,6 +103,12 @@ public class CadastroEmprestimo extends javax.swing.JDialog {
 
         jLabel6.setText("Devolver dia:");
 
+        campoDataDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDataDevolucaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,6 +214,10 @@ public class CadastroEmprestimo extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         salvar();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void campoDataDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataDevolucaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDataDevolucaoActionPerformed
 
     private void salvar() {
         try {
