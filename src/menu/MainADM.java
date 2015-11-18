@@ -312,8 +312,8 @@ public class MainADM extends javax.swing.JFrame {
 
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         String sobre = "Sistema de biblioteca simples desenvolvido por:\n"
-                + "\n-> Paulo Augusto\n-> Wellington Gondim\n-> Luciano\n-> Aluno A"
-                + "\n-> Aluno B";
+                + "\n-> Paulo Augusto\n-> Wellington Gondim\n-> Luciano Vieira\n-> Alexandro S. C."
+                + "\n-> Raimundo Santiago";
 
         JOptionPane.showMessageDialog(null, sobre);
     }//GEN-LAST:event_sobreActionPerformed
