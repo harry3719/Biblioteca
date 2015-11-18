@@ -5,30 +5,40 @@
  */
 package formularios;
 
-import entidades.Livro;
-import entidades.Usuario;
+import entidades.Autor;
+import entidades.Leitor;
 import java.util.ArrayList;
 import java.util.List;
-import servico.UsuarioServico;
+import javax.swing.JFrame;
+import servico.LeitorServico;
+import util.SelecionaItem;
+import util.Selecionavel;
 import util.TabelaModelo;
 
 /**
  *
  * @author Paulo
  */
-public class PesquisaUsuario extends javax.swing.JFrame {
+public class PesquisaLeitor extends javax.swing.JDialog implements Selecionavel<Leitor> {
 
     /**
      * Creates new form PesquisaLivro
      */
-    private List<Usuario> lista;
-    private UsuarioServico servico;
+    private List<Leitor> lista;
+    private LeitorServico servico;
+    private SelecionaItem selecionaItem;
+    private Leitor selecionado;
 
-    public PesquisaUsuario() {
+    public PesquisaLeitor(JFrame pai) {
+        super(pai, "Consulta de leitor", true);
         initComponents();
         lista = new ArrayList<>();
-        servico = new UsuarioServico();
+        servico = new LeitorServico();
         setTabela();
+    }
+
+    public void setSelecionaItem(SelecionaItem item) {
+        selecionaItem = item;
     }
 
     private void setTabela() {
@@ -38,7 +48,7 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         nomes[1] = "CPF";
         nomes[2] = "Nome";
         int j = 0;
-        for (Usuario u : lista) {
+        for (Leitor u : lista) {
             dados[j][0] = u.getId();
             dados[j][1] = u.getCpf();
             dados[j][2] = u.getNome();
@@ -74,7 +84,7 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        jLabel1.setText("Pesquisa Usuario");
+        jLabel1.setText("Pesquisa Leitor");
 
         jLabel2.setText("Digite o nome do Usuario:");
 
@@ -98,6 +108,11 @@ public class PesquisaUsuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,22 +120,22 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(campoNome))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(campoNome))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jToggleButton1))))
-                .addGap(0, 8, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jToggleButton1))
+                .addGap(0, 32, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,40 +167,22 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         buscar();        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PesquisaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PesquisaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PesquisaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PesquisaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() > 1) {
+            clickou();
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_jTable1MouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PesquisaUsuario().setVisible(true);
-            }
-        });
+    public void clickou() {
+        if (selecionaItem != null) {
+            selecionado = servico.encontra((Long) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0));
+            selecionaItem.seleciona();
+        }
+    }
+
+    @Override
+    public Leitor getSelecionado() {
+        return selecionado;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

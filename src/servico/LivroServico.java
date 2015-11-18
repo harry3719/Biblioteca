@@ -26,8 +26,12 @@ public class LivroServico {
         dao.saveOrUpdate(livro);
     }
 
-    public List<Livro> buscar(String autor, String isbn) {
-        return dao.buscar(autor, isbn);
+    public List<Livro> buscar(String titulo, String isbn) {
+        return dao.buscar(titulo, isbn);
+    }
+
+    public Livro encontra(Long aLong) {
+        return dao.carregar(aLong);
     }
 
 }

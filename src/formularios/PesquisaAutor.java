@@ -5,12 +5,11 @@
  */
 package formularios;
 
-import entidades.Leitor;
-import entidades.Livro;
+import entidades.Autor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
-import servico.LivroServico;
+import servico.AutorServico;
 import util.SelecionaItem;
 import util.Selecionavel;
 import util.TabelaModelo;
@@ -19,22 +18,22 @@ import util.TabelaModelo;
  *
  * @author Paulo
  */
-public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<Livro> {
+public class PesquisaAutor extends javax.swing.JDialog implements Selecionavel<Autor> {
 
     /**
      * Creates new form PesquisaLivro
      */
-    private List<Livro> listaDeLivros;
-    private LivroServico servico;
+    private List<Autor> lista;
+    private AutorServico servico;
     private SelecionaItem selecionaItem;
-    private Livro selecionado;
+    private Autor selecionado;
 
-    public PesquisaLivro(JFrame pai) {
-        super(pai, "Consulta de Livros", true);
+    public PesquisaAutor(JFrame pai) {
+        super(pai, "Consulta de Autor", true);
         initComponents();
-        listaDeLivros = new ArrayList<>();
+        lista = new ArrayList<>();
         setTabela();
-        servico = new LivroServico();
+        servico = new AutorServico();
 
     }
 
@@ -43,20 +42,14 @@ public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<L
     }
 
     private void setTabela() {
-        Object[][] dados = new Object[listaDeLivros.size()][5];
-        Object[] nomes = new Object[5];
+        Object[][] dados = new Object[lista.size()][2];
+        Object[] nomes = new Object[2];
         nomes[0] = "Id";
-        nomes[1] = "Titulo";
-        nomes[2] = "Autor";
-        nomes[3] = "Editora";
-        nomes[4] = "ISBN";
+        nomes[1] = "Nome";
         int j = 0;
-        for (Livro l : listaDeLivros) {
+        for (Autor l : lista) {
             dados[j][0] = l.getId();
-            dados[j][1] = l.getTitulo();
-            dados[j][2] = l.getAutor().getNome();
-            dados[j][3] = l.getEditora().getNome();
-            dados[j][4] = l.getIsbn();
+            dados[j][1] = l.getNome();
             j++;
 
         }
@@ -64,20 +57,8 @@ public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<L
     }
 
     private void buscar() {
-        listaDeLivros = servico.buscar(campoAutor.getText(), campoISBN.getText());
+        lista = servico.listar(campoNome.getText());
         setTabela();
-    }
-
-    public void clickou() {
-        if (selecionaItem != null) {
-            selecionado = servico.encontra((Long) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0));
-            selecionaItem.seleciona();
-        }
-    }
-
-    @Override
-    public Livro getSelecionado() {
-        return selecionado;
     }
 
     /**
@@ -91,9 +72,7 @@ public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<L
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        campoAutor = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        campoISBN = new javax.swing.JTextField();
+        campoNome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -101,11 +80,9 @@ public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<L
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        jLabel1.setText("Pesquisa Livros");
+        jLabel1.setText("Pesquisa Autor");
 
-        jLabel2.setText("Digite o titulo do Livro:");
-
-        jLabel3.setText("Digite o ISBN do livro:");
+        jLabel2.setText("Digite o nome ou parte:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,40 +117,29 @@ public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<L
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(campoAutor))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(campoISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 31, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(campoNome))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(51, 51, 51)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -192,14 +158,25 @@ public class PesquisaLivro extends javax.swing.JDialog implements Selecionavel<L
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    public void clickou() {
+        if (selecionaItem != null) {
+            selecionado = servico.encontra((Long) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0));
+            selecionaItem.seleciona();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField campoAutor;
-    private javax.swing.JTextField campoISBN;
+    private javax.swing.JTextField campoNome;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Autor getSelecionado() {
+        return selecionado;
+    }
+
 }

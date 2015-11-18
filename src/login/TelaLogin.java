@@ -9,7 +9,6 @@ import entidades.Funcionario;
 import factory.CriadorDeSessao;
 import javax.swing.JOptionPane;
 import menu.MainADM;
-import menu.MainUser;
 import servico.FuncionarioServico;
 
 /**
@@ -156,13 +155,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private void login() {
         Funcionario funcionario = servico.login(login.getText(), new String(senha.getPassword()));
         if (funcionario != null) {
-            if (funcionario.getFuncao().equals("ADMINISTRADOR")) {
-                JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador !!");
-                new MainADM().setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Seja bem !!");
-                new MainUser().setVisible(true);
-            }
+            JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador !!");
+            new MainADM(funcionario).setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Acesso Negado!!!");

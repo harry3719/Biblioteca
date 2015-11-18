@@ -6,15 +6,12 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -32,7 +29,7 @@ public class Funcionario implements Serializable {
     private String nome;
 
     @Column
-    private String endereco;
+    private String logradouro;
 
     @Column
     // Alguns numeros incluem letras as vezes tipo 26A
@@ -41,16 +38,12 @@ public class Funcionario implements Serializable {
     @Column
     // Alguns campos so opcionais
     private String complemento;
+    @Column
+    // Alguns campos so opcionais
+    private String bairro;
 
     @Column(nullable = false)
     private String rg;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dtEmissao;
-
-    @Column(nullable = false)
-    private String orgaoExpeditor;
 
     @Column(nullable = false, unique = true)
     // Cpf tem 0 a esquerda
@@ -59,17 +52,13 @@ public class Funcionario implements Serializable {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = true)
+    @Column
     private String telefoneFixo;
 
-    @Column
-    private String telefoneCelular;
-
     @Column(nullable = false)
-    // Aqui no precisa ser unique
     private String funcao;
 
-    @Column()
+    @Column
     private String senha;
 
     public String getSenha() {
@@ -96,12 +85,12 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public String getComplemento() {
@@ -110,22 +99,6 @@ public class Funcionario implements Serializable {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
-    }
-
-    public Date getDtEmissao() {
-        return dtEmissao;
-    }
-
-    public void setDtEmissao(Date dtEmissao) {
-        this.dtEmissao = dtEmissao;
-    }
-
-    public String getOrgaoExpeditor() {
-        return orgaoExpeditor;
-    }
-
-    public void setOrgaoExpeditor(String orgaoExpeditor) {
-        this.orgaoExpeditor = orgaoExpeditor;
     }
 
     public String getEmail() {
@@ -156,6 +129,14 @@ public class Funcionario implements Serializable {
         return funcao;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     public void setFuncao(String funcao) {
         this.funcao = funcao;
     }
@@ -176,14 +157,6 @@ public class Funcionario implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getTelefoneCelular() {
-        return telefoneCelular;
-    }
-
-    public void setTelefoneCelular(String telefoneCelular) {
-        this.telefoneCelular = telefoneCelular;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -200,10 +173,7 @@ public class Funcionario implements Serializable {
             return false;
         }
         final Funcionario other = (Funcionario) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
 }

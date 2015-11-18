@@ -12,9 +12,12 @@
         <property name="hibernate.connection.autocommit">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="entidades.Estado"/>
-        <mapping class="entidades.Cidade"/>
+        <mapping class="entidades.Cidade"/> 
         <mapping class="entidades.Funcionario"/>
-        <mapping class="entidades.Usuario"/>
+        <mapping class="entidades.Autor"/>
+        <mapping class="entidades.Editora"/>
         <mapping class="entidades.Livro"/>
+        <mapping class="entidades.Leitor"/>
+        <mapping class="entidades.Emprestimo"/>
     </session-factory>
 </hibernate-configuration>

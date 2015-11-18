@@ -6,7 +6,10 @@
 package dao;
 
 import entidades.Funcionario;
+import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -23,6 +26,10 @@ public class FuncionarioDAO extends DAO<Funcionario> {
                 .setParameter("nome", login)
                 .setParameter("senha", senha)
                 .uniqueResult();
+    }
+
+    public List<Funcionario> listar(String nome) {
+        return getSession().createCriteria(Funcionario.class).add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).list();
     }
 
 }

@@ -5,8 +5,8 @@
  */
 package servico;
 
-import dao.UsuarioDAO;
-import entidades.Usuario;
+import dao.LeitorDAO;
+import entidades.Leitor;
 import factory.CriadorDeSessao;
 import java.util.List;
 
@@ -14,20 +14,24 @@ import java.util.List;
  *
  * @author Paulo
  */
-public class UsuarioServico {
+public class LeitorServico {
 
-    private UsuarioDAO dao;
+    private LeitorDAO dao;
 
-    public UsuarioServico() {
-        dao = new UsuarioDAO(CriadorDeSessao.getSession());
+    public LeitorServico() {
+        dao = new LeitorDAO(CriadorDeSessao.getSession());
     }
 
-    public void salvar(Usuario usuario) {
+    public void salvar(Leitor usuario) {
 
         dao.saveOrUpdate(usuario);
     }
 
-    public List<Usuario> buscar(String nome, String cpf) {
+    public List<Leitor> buscar(String nome, String cpf) {
         return dao.buscar(nome, cpf);
+    }
+
+    public Leitor encontra(Long aLong) {
+        return dao.carregar(aLong);
     }
 }

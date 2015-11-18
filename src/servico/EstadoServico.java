@@ -15,20 +15,23 @@ import java.util.List;
  * @author Paulo
  */
 public class EstadoServico {
-    
+
     private EstadoDAO dao;
 
     public EstadoServico() {
         dao = new EstadoDAO(CriadorDeSessao.getSession());
     }
-    
-    public void salvar(Estado estado){
+
+    public void salvar(Estado estado) {
         dao.saveOrUpdate(estado);
     }
 
     public List<Estado> listar() {
         return dao.listar();
     }
-    
-    
+
+    public List<Estado> buscar(String nome) {
+        return dao.listar(nome);
+    }
+
 }

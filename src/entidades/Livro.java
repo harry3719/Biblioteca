@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidades;
 
 import java.io.Serializable;
@@ -12,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -28,14 +25,18 @@ public class Livro implements Serializable {
     @Column
     private String titulo;
 
-    @Column
-    private String autor;
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Autor autor;
 
-    @Column
-    private String editora;
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Editora editora;
 
     @Column
     private String paginas;
+    @Column
+    private String edicao;
 
     @Column(nullable = false)
     private String isbn;
@@ -74,20 +75,28 @@ public class Livro implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
-    public String getEditora() {
+    public Editora getEditora() {
         return editora;
     }
 
-    public void setEditora(String editora) {
+    public void setEditora(Editora editora) {
         this.editora = editora;
+    }
+
+    public String getEdicao() {
+        return edicao;
+    }
+
+    public void setEdicao(String edicao) {
+        this.edicao = edicao;
     }
 
     public String getPaginas() {

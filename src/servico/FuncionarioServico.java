@@ -8,6 +8,7 @@ package servico;
 import dao.FuncionarioDAO;
 import entidades.Funcionario;
 import factory.CriadorDeSessao;
+import java.util.List;
 
 /**
  *
@@ -29,6 +30,10 @@ public class FuncionarioServico {
 
     public Funcionario login(String login, String senha) {
         return dao.login(login, senha);
+    }
+
+    public List<Funcionario> buscar(String nome) {
+        return dao.listar(nome);
     }
 
 }

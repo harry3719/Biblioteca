@@ -5,7 +5,7 @@
  */
 package dao;
 
-import entidades.Livro;
+import entidades.Autor;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -15,16 +15,14 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Paulo
  */
-public class LivroDAO extends DAO<Livro> {
+public class AutorDAO extends DAO<Autor> {
 
-    public LivroDAO(Session session) {
-        super(session, Livro.class);
+    public AutorDAO(Session session) {
+        super(session, Autor.class);
     }
 
-    public List<Livro> buscar(String titulo, String isbn) {
-        return getSession().createCriteria(Livro.class).add(Restrictions.ilike("titulo", titulo, MatchMode.START))
-                .add(Restrictions.ilike("isbn", isbn, MatchMode.START)).list();
-
+    public List<Autor> listar(String nome) {
+        return getSession().createCriteria(Autor.class).add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).list();
     }
 
 }

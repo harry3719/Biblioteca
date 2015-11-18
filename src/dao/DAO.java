@@ -5,7 +5,7 @@
  */
 package dao;
 
-
+import entidades.Autor;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,39 +15,45 @@ import org.hibernate.Transaction;
  * @author Paulo
  */
 public abstract class DAO<T> {
-    
+
     private final Session session;
     private Class classe;
 
-    
     public DAO(Session session, Class classe) {
         this.session = session;
         this.classe = classe;
     }
-    public List<T> listar(){
+
+    public List<T> listar() {
         return session.createCriteria(classe).list();
     }
 
     public Session getSession() {
         return session;
     }
-    
-    public void salvar(T t){
+
+    public void salvar(T t) {
         session.save(t);
     }
-    public void update(T t){
+
+    public void update(T t) {
         session.update(t);
     }
-    public void saveOrUpdate(T t){
+
+    public void saveOrUpdate(T t) {
         session.saveOrUpdate(t);
     }
-    public void delete(T t){
+
+    public void delete(T t) {
         session.delete(t);
     }
-    
-    public Transaction abrirTransacao(){
+
+    public Transaction abrirTransacao() {
         return session.beginTransaction();
     }
-    
-    
+
+    public T carregar(Long aLong) {
+        return (T) getSession().get(classe, aLong);
+    }
+
 }

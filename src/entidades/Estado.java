@@ -12,28 +12,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Paulo
  */
-
 @Entity
-public class Estado implements Serializable{
-    
+public class Estado implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Long id;
-    
+
     @Column(nullable = false)
     private String nome;
-    
+
     @Column(nullable = false, unique = true)
     private String uf;
-    
+
     public Long getId() {
         return id;
     }
@@ -58,7 +55,6 @@ public class Estado implements Serializable{
         this.uf = uf;
     }
 
-  
     @Override
     public int hashCode() {
         int hash = 7;
@@ -85,9 +81,5 @@ public class Estado implements Serializable{
     public String toString() {
         return uf;
     }
-    
-    
-    
-    
-    
+
 }

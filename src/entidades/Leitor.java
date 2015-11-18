@@ -18,7 +18,7 @@ import javax.persistence.Id;
  * @author Paulo
  */
 @Entity
-public class Usuario implements Serializable {
+public class Leitor implements Serializable {
 
     @Id
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     private String nome;
 
     @Column
-    private String endereco;
+    private String logradouro;
 
     @Column
     private String numero;
@@ -68,12 +68,12 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public String getNumero() {
@@ -147,7 +147,7 @@ public class Usuario implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
+        final Leitor other = (Leitor) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

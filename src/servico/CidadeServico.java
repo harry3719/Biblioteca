@@ -16,18 +16,22 @@ import java.util.List;
  * @author Paulo
  */
 public class CidadeServico {
+
     private CidadeDAO dao;
-    
-    public CidadeServico(){
+
+    public CidadeServico() {
         dao = new CidadeDAO(CriadorDeSessao.getSession());
     }
 
-    
-    public void salvar(Cidade cidade){
+    public void salvar(Cidade cidade) {
         dao.saveOrUpdate(cidade);
     }
 
     public List<Cidade> listar(Estado estado) {
         return dao.listar(estado);
+    }
+
+    public List<Cidade> buscar(String nome) {
+        return dao.listar(nome);
     }
 }

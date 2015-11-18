@@ -17,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.ManyToAny;
 
 /**
  *
@@ -33,24 +32,21 @@ public class Emprestimo implements Serializable {
 
     @JoinColumn(nullable = false)
     @ManyToOne
-    private Usuario usuario;
-
-    @Column(nullable = false)
-    private String nome;
+    private Leitor usuario;
 
     @JoinColumn(nullable = false)
     @ManyToOne
     private Livro livro;
 
-    @Column(nullable = false)
-    private String titulo;
-
-    @Column(nullable = false)
+    @Column()
     @Temporal(TemporalType.DATE)
     private Date dataDevolucao;
-
     @Column(nullable = false)
-    private String status;
+    @Temporal(TemporalType.DATE)
+    private Date dataEmprestimo;
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date previsaoDevolucao;
 
     public Long getId() {
         return id;
@@ -60,11 +56,11 @@ public class Emprestimo implements Serializable {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public Leitor getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Leitor usuario) {
         this.usuario = usuario;
     }
 
@@ -76,28 +72,12 @@ public class Emprestimo implements Serializable {
         this.livro = livro;
     }
 
-    public String getStatus() {
-        return status;
+    public Date getDataEmprestimo() {
+        return dataEmprestimo;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setDataEmprestimo(Date dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
     }
 
     public Date getDataDevolucao() {
@@ -106,6 +86,14 @@ public class Emprestimo implements Serializable {
 
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
+    }
+
+    public Date getPrevisaoDevolucao() {
+        return previsaoDevolucao;
+    }
+
+    public void setPrevisaoDevolucao(Date previsaoDevolucao) {
+        this.previsaoDevolucao = previsaoDevolucao;
     }
 
     @Override

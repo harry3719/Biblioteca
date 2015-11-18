@@ -5,13 +5,23 @@
  */
 package menu;
 
+import entidades.Funcionario;
+import formularios.CadastroAutor;
 import formularios.CadastroCidade;
+import formularios.CadastroEditora;
+import formularios.CadastroEmprestimo;
 import formularios.CadastroEstado;
 import formularios.CadastroFuncionario;
-import formularios.CadastroUsuario;
+import formularios.CadastroLeitor;
 import formularios.CadastroLivros;
+import formularios.PesquisaAutor;
+import formularios.PesquisaEditora;
+import formularios.PesquisaEmprestimo;
+import formularios.PesquisaEstado;
+import formularios.PesquisaFuncionario;
 import formularios.PesquisaLivro;
-import formularios.PesquisaUsuario;
+import formularios.PesquisaLeitor;
+import formularios.PesquisaMunicipio;
 import javax.swing.JOptionPane;
 import login.TelaLogin;
 
@@ -21,10 +31,14 @@ import login.TelaLogin;
  */
 public class MainADM extends javax.swing.JFrame {
 
-    public MainADM() {
+    private Funcionario funcionario;
 
+    public MainADM(Funcionario funcionario) {
+        this.funcionario = funcionario;
         initComponents();
-
+        if (funcionario.getFuncao().equals("ADMINISTRADOR")) {
+            cadastroFuncionario.setEnabled(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -48,14 +62,23 @@ public class MainADM extends javax.swing.JFrame {
         trocarUsuario = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
-        cadastrofuncionario = new javax.swing.JMenuItem();
-        cadastroUsuario = new javax.swing.JMenuItem();
-        cadastroLivro = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        cadastroFuncionario = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        cadastroLivro = new javax.swing.JMenuItem();
+        cadastroUsuario = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         pesquisarLivro = new javax.swing.JMenuItem();
         pesquisarUsuario = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         sobre = new javax.swing.JMenuItem();
 
@@ -111,30 +134,6 @@ public class MainADM extends javax.swing.JFrame {
 
         jMenu9.setText("Cadastro");
 
-        cadastrofuncionario.setText("Cadastro de Funcionario");
-        cadastrofuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrofuncionarioActionPerformed(evt);
-            }
-        });
-        jMenu9.add(cadastrofuncionario);
-
-        cadastroUsuario.setText("Cadastro Usuario");
-        cadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroUsuarioActionPerformed(evt);
-            }
-        });
-        jMenu9.add(cadastroUsuario);
-
-        cadastroLivro.setText("Cadastro Livros");
-        cadastroLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroLivroActionPerformed(evt);
-            }
-        });
-        jMenu9.add(cadastroLivro);
-
         jMenuItem3.setText("Cadastro de Estado");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,9 +150,98 @@ public class MainADM extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem4);
 
+        cadastroFuncionario.setText("Cadastro de Funcionario");
+        cadastroFuncionario.setEnabled(false);
+        cadastroFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroFuncionarioActionPerformed(evt);
+            }
+        });
+        jMenu9.add(cadastroFuncionario);
+
+        jMenuItem5.setText("Cadastro de Autor");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem5);
+
+        jMenuItem6.setText("Cadastro de Editora");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem6);
+
+        cadastroLivro.setText("Cadastro Livros");
+        cadastroLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroLivroActionPerformed(evt);
+            }
+        });
+        jMenu9.add(cadastroLivro);
+
+        cadastroUsuario.setText("Cadastro Leitor");
+        cadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu9.add(cadastroUsuario);
+
+        jMenuItem12.setText("Cadastra Emprestimo");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem12);
+
         jMenuBar1.add(jMenu9);
 
         jMenu2.setText("Pesquisa");
+
+        jMenuItem10.setText("Pesquisar Estado");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
+        jMenuItem9.setText("Pesquisar Município");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem11.setText("Pesquisar Funcionario");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem11);
+
+        jMenuItem7.setText("Pedquisar Autor");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setText("Pesquisar Editora");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
 
         pesquisarLivro.setText("Pesquisar Livro");
         pesquisarLivro.addActionListener(new java.awt.event.ActionListener() {
@@ -163,13 +251,21 @@ public class MainADM extends javax.swing.JFrame {
         });
         jMenu2.add(pesquisarLivro);
 
-        pesquisarUsuario.setText("Pesquisar Usuario");
+        pesquisarUsuario.setText("Pesquisar Leitor");
         pesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pesquisarUsuarioActionPerformed(evt);
             }
         });
         jMenu2.add(pesquisarUsuario);
+
+        jMenuItem13.setText("Consulta Emprestimo");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
 
         jMenuBar1.add(jMenu2);
 
@@ -221,81 +317,75 @@ public class MainADM extends javax.swing.JFrame {
     }//GEN-LAST:event_trocarUsuarioActionPerformed
 
     private void pesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarUsuarioActionPerformed
-        PesquisaUsuario p = new PesquisaUsuario();
-        p.setVisible(true);
-
+        new PesquisaLeitor(this).setVisible(true);
     }//GEN-LAST:event_pesquisarUsuarioActionPerformed
 
     private void cadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroUsuarioActionPerformed
-        CadastroUsuario cadastroUsuario = new CadastroUsuario();
-        cadastroUsuario.setVisible(true);
+        new CadastroLeitor(this).setVisible(true);
 
     }//GEN-LAST:event_cadastroUsuarioActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        CadastroCidade cc = new CadastroCidade();
-        cc.setVisible(true);
+        new CadastroCidade(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void cadastrofuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrofuncionarioActionPerformed
-        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
-        cadastroFuncionario.setVisible(true);
+    private void cadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFuncionarioActionPerformed
+        new CadastroFuncionario(this).setVisible(true);
 
-    }//GEN-LAST:event_cadastrofuncionarioActionPerformed
+    }//GEN-LAST:event_cadastroFuncionarioActionPerformed
 
     private void cadastroLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroLivroActionPerformed
-        CadastroLivros cadastroLivro = new CadastroLivros();
-        cadastroLivro.setVisible(true);
+        new CadastroLivros(this).setVisible(true);
     }//GEN-LAST:event_cadastroLivroActionPerformed
 
     private void pesquisarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarLivroActionPerformed
-        PesquisaLivro pesquisarLivro = new PesquisaLivro();
-        pesquisarLivro.setVisible(true);
+        new PesquisaLivro(this).setVisible(true);
     }//GEN-LAST:event_pesquisarLivroActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        CadastroEstado c = new CadastroEstado();
-        c.setVisible(true);
+        new CadastroEstado(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        new PesquisaEstado(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        new PesquisaMunicipio(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-                new MainADM().setVisible(true);
-            }
-        });
-    }
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        new PesquisaFuncionario(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        new CadastroAutor(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        new CadastroEditora(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        new PesquisaAutor(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        new PesquisaEditora(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        new CadastroEmprestimo(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        new PesquisaEmprestimo(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem cadastroFuncionario;
     private javax.swing.JMenuItem cadastroLivro;
     private javax.swing.JMenuItem cadastroUsuario;
-    private javax.swing.JMenuItem cadastrofuncionario;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
@@ -311,9 +401,18 @@ public class MainADM extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem pesquisarLivro;
     private javax.swing.JMenuItem pesquisarUsuario;
